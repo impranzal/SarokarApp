@@ -50,6 +50,10 @@ app.use(
 );
 
 // --- Routes ---
+app.get('/', (req, res) => {
+  res.json({ service: 'sarokar-api', status: 'ok', health: '/api/health' });
+});
+
 app.get('/api/health', (req, res) => {
   const mongoose = require('mongoose');
   const ready = mongoose.connection.readyState === 1;
