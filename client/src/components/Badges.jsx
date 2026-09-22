@@ -34,3 +34,18 @@ export function CategoryChip({ category }) {
     </span>
   );
 }
+
+const GRIEVANCE_STATUS_STYLES = {
+  submitted: 'text-ink/50 border-ink/20',
+  'under-review': 'text-sarokar-gold border-sarokar-gold/50',
+  resolved: 'text-sarokar-green border-sarokar-green/40',
+  closed: 'text-govblue border-govblue/40',
+};
+
+export function GrievanceStatusBadge({ status }) {
+  return (
+    <span className={`inline-block text-xs px-2 py-0.5 rounded-full border ${GRIEVANCE_STATUS_STYLES[status] || ''}`}>
+      {status}
+    </span>
+  );
+}

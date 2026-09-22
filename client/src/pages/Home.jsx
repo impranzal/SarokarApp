@@ -72,6 +72,18 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <section className="py-10 border-t border-sarokar-mist">
+        <div className="border border-sarokar-gold/40 bg-sarokar-gold/5 rounded-lg p-5 max-w-3xl">
+          <p className="text-sm text-ink/80 leading-relaxed">
+            Sarokar operates under Article 27 of the Constitution of Nepal (right to information)
+            and the Digital Nepal Framework's e-Consultation initiative. Not every draft policy is
+            opened for public consultation — matters of national security, ongoing legal proceedings,
+            or confidential cabinet deliberations are handled through internal government channels.{' '}
+            <Link to="/about" className="text-govblue-dark underline font-medium">Read more about scope and eligibility →</Link>
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

@@ -20,3 +20,11 @@ test('invalid login payload is rejected before database access', async () => {
   const response = await request(app).post('/api/auth/login').send({ email: 'not-an-email', password: '' });
   assert.equal(response.status, 400);
 });
+test('grievance submission requires authentication', async () => {
+  const response = await request(app).post('/api/grievances').send({});
+  assert.equal(response.status, 401);
+});
+test('invalid contact message payload is rejected', async () => {
+  const response = await request(app).post('/api/contact').send({ name: 'A', email: 'not-an-email', subject: '', message: 'short' });
+  assert.equal(response.status, 400);
+});

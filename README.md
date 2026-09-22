@@ -23,6 +23,8 @@ instead of a stack of unread comments.
 | **Data-driven governance** | `utils/nlp.js` runs every submission through categorization, sentiment scoring and duplicate detection *before* it ever reaches a human — the dashboard aggregates (`dashboardController.js`) are computed straight from that structured data, not from anyone manually tagging comments. |
 | **Interoperability-readiness** | The API is a plain REST/JSON service with JWT auth and role-based access, decoupled from any specific frontend — a future integration (SMS gateway, a different department's portal) could consume the same `/api/*` endpoints. |
 | **Accountability** | `AuditLog.js` + `utils/auditLog.js` record every publish/close/response action against the officer who took it. |
+| **Grievance redressal** | The Grievance Portal (`GrievancePortal.jsx` / `GrievanceQueue.jsx`, `grievanceController.js`) gives citizens a separate channel for administrative complaints distinct from policy feedback, tracked to resolution by the responsible department. |
+| **Legal grounding & scope** | The `About.jsx` page states the constitutional and policy basis for the platform (Article 27 right to information; the Digital Nepal Framework's e-Consultation initiative) and is explicit that not every policy is eligible for public consultation. |
 
 ## Tech stack
 

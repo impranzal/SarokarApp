@@ -17,6 +17,8 @@ const userRoutes = require('./routes/userRoutes');
 const consultationRoutes = require('./routes/consultationRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const grievanceRoutes = require('./routes/grievanceRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 
@@ -65,6 +67,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/consultations', consultationRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/grievances', grievanceRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

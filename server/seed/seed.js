@@ -10,6 +10,7 @@ const connectDB = require('../config/db');
 const User = require('../models/User');
 const Consultation = require('../models/Consultation');
 const Feedback = require('../models/Feedback');
+const Grievance = require('../models/Grievance');
 const { analyzeFeedbackText, detectDuplicate } = require('../utils/nlp');
 
 const SAMPLE_COMMENTS = [
@@ -36,7 +37,7 @@ async function run() {
   await connectDB();
   console.log('[seed] Connected. Clearing existing demo data...');
 
-  await Promise.all([User.deleteMany({}), Consultation.deleteMany({}), Feedback.deleteMany({})]);
+  await Promise.all([User.deleteMany({}), Consultation.deleteMany({}), Feedback.deleteMany({}), Grievance.deleteMany({})]);
 
   const admin = await User.create({
     name: 'Sarokar Admin', email: 'admin@sarokar.gov.np', password: 'Password123!', role: 'admin',
@@ -163,6 +164,34 @@ async function run() {
   }
 
   console.log(`[seed] Created ${created} feedback entries.`);
+
+  await Grievance.create([
+    {
+      user: citizens[3]._id,
+      subject: 'Delayed response on tax relief eligibility query',
+      category: 'delay',
+      description: 'I submitted a query about the tax relief ordinance eligibility three weeks ago and have not heard back from the department.',
+      relatedConsultation: c1._id,
+      department: DEPARTMENTS[0],
+      status: 'under-review',
+    },
+    {
+      user: citizens[8]._id,
+      subject: 'Consultation portal was unreachable during the comment window',
+      category: 'technical-issue',
+      description: 'The site returned errors for several hours on the last day of the forest and wetland amendment consultation, which may have prevented some citizens from submitting feedback in time.',
+      relatedConsultation: c2._id,
+      department: DEPARTMENTS[1],
+      status: 'resolved',
+      response: {
+        text: 'We have extended the comment window by 48 hours to compensate for the outage and confirmed no submissions were lost.',
+        respondedBy: officerEnv._id,
+        respondedAt: daysAgo(9),
+      },
+    },
+  ]);
+  console.log('[seed] Created 2 demo grievances.');
+
   console.log('[seed] Done. Demo logins (password: Password123!):');
   console.log('  admin@sarokar.gov.np (admin)');
   console.log('  officer.finance@sarokar.gov.np (officer, Ministry of Finance)');

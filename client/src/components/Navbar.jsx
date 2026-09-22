@@ -17,9 +17,22 @@ export default function Navbar() {
           <Link to="/consultations" className="hover:text-govblue transition-colors">
             Consultations
           </Link>
+          <Link to="/about" className="hover:text-govblue transition-colors">
+            About
+          </Link>
+          {user && (
+            <Link to="/grievances" className="hover:text-govblue transition-colors">
+              Grievances
+            </Link>
+          )}
           {user && ['officer', 'admin'].includes(user.role) && (
             <Link to="/officer" className="hover:text-govblue transition-colors">
               Officer Desk
+            </Link>
+          )}
+          {user && ['officer', 'admin'].includes(user.role) && (
+            <Link to="/officer/grievances" className="hover:text-govblue transition-colors">
+              Grievance Queue
             </Link>
           )}
           {user?.role === 'admin' && (
